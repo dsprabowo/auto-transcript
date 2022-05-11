@@ -1,2 +1,2 @@
 # auto-transcript
-auto trranscript audio files
+auto transcript audio files 
