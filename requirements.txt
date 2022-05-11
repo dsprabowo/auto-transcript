@@ -6,3 +6,4 @@ djangorestframework
 pydub
 SpeechRecognition
 numpy==1.21
+python-decouple
