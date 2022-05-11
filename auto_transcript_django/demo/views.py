@@ -13,6 +13,10 @@ import time
 import re
 import json
 
+def index(request):
+	context={'a':'Hello World!'}
+	return render(request,'index.html',context)
+
 
 def auto_transcript(request):
 
