@@ -1,5 +1,5 @@
 # auto-transcript
-auto transcript audio files in Bahasa Indonesia using Google audio recognition. Create minimal UI using django.
+auto transcript audio files in Bahasa Indonesia using Google audio recognition. Create minimal UI using django. [Link to code](https://github.com/dsprabowo/auto-transcript/blob/main/auto_transcript_django/demo/views.py)
 
 # installation (Python 3.8+)
 1. install libraries ```pip install -r requirements.txt```
