@@ -1,0 +1,8 @@
+SpeechBrain
+pandas
+Django
+django-cors-headers
+djangorestframework
+pydub
+SpeechRecognition
+numpy==1.21

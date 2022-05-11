@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Auto Transcript</title>
+</head>
+
+<body>
+    <h2>Automatic transcription of audio files</h2>
+    <h3>Input audio file .wav format:</h3>
+    <br>
+    <form method="post" enctype="multipart/form-data" action="auto_transcript">
+    {% csrf_token %} 
+ <br>
+ <br>
+ <input type="file" name="AudioInput" accept="audio/*">
+ <br>
+ <input type="submit" value="Submit" >
+</div>
+
+</form>
+<br>
+{{result|safe}}
+</body>
+</html>
