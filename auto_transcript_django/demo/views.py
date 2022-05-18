@@ -63,7 +63,12 @@ def auto_transcript(request):
 			if i == 1:
 				# buffer for 0.5 second
 				test = sound_file[(label[0])*1000:(label[1]+0.5)*1000]
-				audio = sr.AudioData(test.raw_data, sample_rate = sampling_rate, sample_width = test.sample_width)
+				filename = 'test_'+ str(i) +'.wav'
+				savepath = os.path.join(media_url,'diarization_split',filename)
+				test.export(savepath,format='wav')
+				audio_import = sr.AudioFile(savepath)
+				with audio_import as source:
+					audio = r.record(source)
 				try:    
 					text = r.recognize_google(audio, language = 'id-ID')
 					output = [label[2],label[0],label[1],text]
@@ -73,11 +78,17 @@ def auto_transcript(request):
 					text = 'inaudible'
 					output = [label[2],label[0],label[1],text]
 					transcript.append(output)
+				os.remove(savepath)
 				print('Segment '+ str(i) + ' transcripted')
 			else:
 				# buffer for 0.5 second
 				test = sound_file[(label[0]-0.5)*1000:(label[1]+0.5)*1000]
-				audio = sr.AudioData(test.raw_data, sample_rate = sampling_rate, sample_width = test.sample_width)
+				filename = 'test_'+ str(i) +'.wav'
+				savepath = os.path.join(media_url,'diarization_split',filename)
+				test.export(savepath,format='wav')
+				audio_import = sr.AudioFile(savepath)
+				with audio_import as source:
+					audio = r.record(source)
 				try:    
 					text = r.recognize_google(audio, language = 'id-ID')
 					output = [label[2],label[0],label[1],text]
@@ -87,6 +98,7 @@ def auto_transcript(request):
 					text = 'inaudible'
 					output = [label[2],label[0],label[1],text]
 					transcript.append(output)
+				os.remove(savepath)
 				print('Segment '+ str(i) + ' transcripted')
 		print('Transcription finished')
 		return(transcript)
