@@ -35,7 +35,6 @@ def auto_transcript(request):
 	
 	file_path = os.path.join(media_url,str(filename))
 	
-	sampling_rate = 16000
 
 	# load pyannote diarization pipeline
 	pipeline_diarization = Pipeline.from_pretrained("pyannote/speaker-diarization")
