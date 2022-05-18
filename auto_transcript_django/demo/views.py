@@ -22,13 +22,17 @@ def auto_transcript(request):
 
 	start = time.perf_counter()
 	# Upload audio from input
+	media_url = django_settings.MEDIA_ROOT
+	is_exist = os.path.exists(media_url)
+	if not is_exist:
+		os.makedirs(media_url)
 	myfile = request.FILES['AudioInput']
 	fs = FileSystemStorage()
 
 	# save temporary file for processing
 	filename = fs.save(myfile.name, myfile)
 	
-	media_url = django_settings.MEDIA_ROOT
+	
 	file_path = os.path.join(media_url,str(filename))
 	
 	sampling_rate = 16000
@@ -64,7 +68,7 @@ def auto_transcript(request):
 				# buffer for 0.5 second
 				test = sound_file[(label[0])*1000:(label[1]+0.5)*1000]
 				filename = 'test_'+ str(i) +'.wav'
-				savepath = os.path.join(media_url,'diarization_split',filename)
+				savepath = os.path.join(media_url,filename)
 				test.export(savepath,format='wav')
 				audio_import = sr.AudioFile(savepath)
 				with audio_import as source:
@@ -84,7 +88,7 @@ def auto_transcript(request):
 				# buffer for 0.5 second
 				test = sound_file[(label[0]-0.5)*1000:(label[1]+0.5)*1000]
 				filename = 'test_'+ str(i) +'.wav'
-				savepath = os.path.join(media_url,'diarization_split',filename)
+				savepath = os.path.join(media_url,filename)
 				test.export(savepath,format='wav')
 				audio_import = sr.AudioFile(savepath)
 				with audio_import as source:
